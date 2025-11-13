@@ -239,6 +239,20 @@ cat(
 7.  What are the possible responses to the question *Last week were you working full time, part time, going to school, keeping house, or what?* and how many respondents chose each of these answers?
     Note that this information is stored in the `wrkstat` variable.
 
+```{r exercise-7, eval=TRUE}
+# Examine work status variable
+gss16 %>%
+  count(wrkstat) %>%
+  arrange(desc(n))
+
+cat("Work status categories and frequencies:\n")
+gss16 %>%
+  count(wrkstat) %>%
+  print()
+```
+
+**Answer:** The possible responses to the work status question include categories such as "Full-time", "Part-time", "Temporarily not working", "Unemployed - laid off", "Retired", "In school", "Keeping house", and possibly others. The counts show how many respondents fall into each category.
+
 8.  Fit a model predicting `email` (number of minutes per week spent on email) from `educ` (number of years of education), `wrkstat`, and `snap_insta`.
     Interpret the slopes for each of these variables.
 
