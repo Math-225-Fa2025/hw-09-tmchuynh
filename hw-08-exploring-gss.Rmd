@@ -256,6 +256,36 @@ gss16 %>%
 8.  Fit a model predicting `email` (number of minutes per week spent on email) from `educ` (number of years of education), `wrkstat`, and `snap_insta`.
     Interpret the slopes for each of these variables.
 
+```{r exercise-8, eval=TRUE}
+# Fit linear regression model
+email_model <- lm(email ~ educ + wrkstat + snap_insta, data = gss16)
+
+# View model summary
+summary(email_model)
+
+# Extract and interpret coefficients
+coef_summary <- broom::tidy(email_model)
+print(coef_summary)
+
+cat("\nModel Interpretation:\n")
+cat("Intercept: The baseline email time when other variables are at reference levels.\n")
+cat(
+  "Educ coefficient: For each additional year of education, email time changes by",
+  round(coef_summary$estimate[2], 2), "minutes per week.\n"
+)
+cat("Wrkstat coefficients: Each work status category differs from the reference category.\n")
+cat(
+  "Snap_insta coefficient: Using Snapchat/Instagram is associated with",
+  round(coef_summary$estimate[grep("snap_instYes", coef_summary$term)], 2),
+  "minutes per week difference in email time.\n"
+)
+```
+
+**Detailed Interpretation:** 
+- **Education (educ):** Each additional year of education is associated with a change in email time. Higher education may correlate with jobs that require more email communication.
+- **Work Status (wrkstat):** Different employment statuses have different relationships with email usage. Full-time workers likely spend more time on email than part-time workers, students, or retirees.
+- **Snap_insta:** Using Snapchat or Instagram may indicate younger respondents, who may have different email habits than older generations.
+
 9.  Create a predicted values vs. residuals plot for this model.
     Are there any issues with the model?
     If yes, describe them.
