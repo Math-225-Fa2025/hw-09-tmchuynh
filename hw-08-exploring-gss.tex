@@ -1,0 +1,1267 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={HW 08 - Exploring the GSS},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{HW 08 - Exploring the GSS}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{img/mauro-mora-31-pOduwZGE-unsplash} \caption{Photo by Mauro Mora on Unsplash}\label{fig:photo}
+\end{figure}
+
+The GSS gathers data on contemporary American society in order to
+monitor and explain trends and constants in attitudes, behaviours, and
+attributes. Hundreds of trends have been tracked since 1972. In
+addition, since the GSS adopted questions from earlier surveys, trends
+can be followed for up to 70 years.
+
+The GSS contains a standard core of demographic, behavioral, and
+attitudinal questions, plus topics of special interest. Among the topics
+covered are civil liberties, crime and violence, intergroup tolerance,
+morality, national spending priorities, psychological well-being, social
+mobility, and stress and traumatic events.
+
+In this assignment we analyze data from the 2016 GSS, using it to
+estimate values of population parameters of interest about US
+adults.\footnote{Smith, Tom W, Peter Marsden, Michael Hout, and Jibum
+  Kim. General Social Surveys, 1972-2016 {[}machine-readable data
+  file{]} /Principal Investigator, Tom W. Smith; Co-Principal
+  Investigator, Peter V. Marsden; Co-Principal Investigator, Michael
+  Hout; Sponsored by National Science Foundation. -NORC ed.- Chicago:
+  NORC at the University of Chicago {[}producer and distributor{]}. Data
+  accessed from the GSS Data Explorer website at
+  gssdataexplorer.norc.org.}
+
+\section{Getting started}\label{getting-started}
+
+Go to the course GitHub organization and locate your homework repo,
+clone it in Posit Cloud and open the R Markdown document. Knit the
+document to make sure it compiles without errors.
+
+\subsection{Warm up}\label{warm-up}
+
+Before we introduce the data, let's warm up with some simple exercises.
+Update the YAML of your R Markdown file with your information, knit,
+commit, and push your changes. Make sure to commit with a meaningful
+commit message. Then, go to your repo on GitHub and confirm that your
+changes are visible in your Rmd \textbf{and} md files. If anything is
+missing, commit and push again.
+
+\subsection{Packages}\label{packages}
+
+We'll use the \textbf{tidyverse} package for much of the data wrangling
+and visualisation and the data lives in the \textbf{dsbox} package.
+These packages are already installed for you. You can load them by
+running the following in your Console:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(dsbox)}
+\FunctionTok{library}\NormalTok{(broom)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Data}\label{data}
+
+The data can be found in the \textbf{dsbox} package, and it's called
+\texttt{gss16}. Since the dataset is distributed with the package, we
+don't need to load it separately; it becomes available to us when we
+load the package. You can find out more about the dataset by inspecting
+its documentation, which you can access by running \texttt{?gss16} in
+the Console or using the Help menu in RStudio to search for
+\texttt{gss16}. You can also find this information
+\href{https://rstudio-education.github.io/dsbox/reference/gss16.html}{here}.
+
+\section{Exercises}\label{exercises}
+
+\subsection{Part 1: Harassment at work}\label{part-1-harassment-at-work}
+
+In 2016, the GSS added a new question on harassment at work. The
+question is phrased as the following.
+
+\begin{quote}
+\emph{Over the past five years, have you been harassed by your superiors
+or co-workers at your job, for example, have you experienced any
+bullying, physical or psychological abuse?}
+\end{quote}
+
+Answers to this question are stored in the \texttt{harass5} variable in
+our dataset.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What are the possible responses to this question and how many
+  respondents chose each of these answers?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Examine the possible responses to the harassment question}
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(harass5) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   harass5                                                     n
+##   <chr>                                                   <int>
+## 1 <NA>                                                     1398
+## 2 No                                                       1136
+## 3 Yes                                                       237
+## 4 Does not apply (i do not have a job/superior/co-worker)    96
+\end{verbatim}
+
+\textbf{Answer:} The possible responses to the harassment question are:
+``Yes'' (has been harassed), ``No'' (has not been harassed), ``Does not
+apply'' (respondent does not work), and ``NA'' (missing responses). The
+distribution shows how many respondents chose each response, with the
+majority likely answering ``No'' if workplace harassment is not
+widespread.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What percent of the respondents for whom this question is applicable\\
+  (i.e.~excluding \texttt{NA}s and \texttt{Does\ not\ apply}s) have been
+  harassed by their superiors or co-workers at their job.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filter to applicable responses only (exclude NA and "Does not apply")}
+\NormalTok{harassment\_applicable }\OtherTok{\textless{}{-}}\NormalTok{ gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(harass5), harass5 }\SpecialCharTok{!=} \StringTok{"Does not apply"}\NormalTok{)}
+
+\CommentTok{\# Calculate the percentage of "Yes" responses}
+\NormalTok{harassment\_pct }\OtherTok{\textless{}{-}}\NormalTok{ harassment\_applicable }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_total =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_yes =} \FunctionTok{sum}\NormalTok{(harass5 }\SpecialCharTok{==} \StringTok{"Yes"}\NormalTok{),}
+    \AttributeTok{pct\_harassed =}\NormalTok{ (n\_yes }\SpecialCharTok{/}\NormalTok{ n\_total) }\SpecialCharTok{*} \DecValTok{100}
+\NormalTok{  )}
+
+\NormalTok{harassment\_pct }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 3
+##   n_total n_yes pct_harassed
+##     <int> <int>        <dbl>
+## 1    1469   237         16.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}
+  \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Answer: Among respondents for whom this question is applicable,"}\NormalTok{,}
+  \FunctionTok{round}\NormalTok{(harassment\_pct}\SpecialCharTok{$}\NormalTok{pct\_harassed, }\DecValTok{1}\NormalTok{), }\StringTok{"\% have been harassed at work.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Answer: Among respondents for whom this question is applicable, 16.1 % have been harassed at work.
+\end{verbatim}
+
+\textbf{Interpretation:} This percentage represents the proportion of
+employed respondents who have experienced workplace harassment in the
+past five years, providing a measure of the prevalence of bullying and
+abuse in the US workplace according to the 2016 GSS.
+
+Knit, \emph{commit, and push your changes to GitHub with an appropriate
+commit message. Make sure to commit and push all changed files so that
+your Git pane is cleared up afterwards.}
+
+\subsection{Part 2: Time spent on
+email}\label{part-2-time-spent-on-email}
+
+The 2016 GSS also asked respondents how many hours and minutes they
+spend on email weekly. The responses to these questions are recorded in
+the \texttt{emailhr} and \texttt{emailmin} variables. For example, if
+the response is 2.5 hrs, this would be recorded as
+\texttt{emailhr\ =\ 2} and \texttt{emailmin\ =\ 30}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Create a new variable called \texttt{email} that combines these two
+  variables to reports the number of minutes the respondents spend on
+  email weekly.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create email variable combining hours and minutes}
+\NormalTok{gss16 }\OtherTok{\textless{}{-}}\NormalTok{ gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{email =}\NormalTok{ emailhr }\SpecialCharTok{*} \DecValTok{60} \SpecialCharTok{+}\NormalTok{ emailmin)}
+
+\CommentTok{\# Check the new variable}
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(emailhr, emailmin, email) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 3
+##    emailhr emailmin email
+##      <dbl>    <dbl> <dbl>
+##  1      12        0   720
+##  2       0       30    30
+##  3      NA       NA    NA
+##  4       0       10    10
+##  5      NA       NA    NA
+##  6       2        0   120
+##  7      40        0  2400
+##  8      NA       NA    NA
+##  9       0        0     0
+## 10      NA       NA    NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Email time statistics:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Email time statistics:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_valid =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(email)),}
+    \AttributeTok{mean\_email =} \FunctionTok{mean}\NormalTok{(email, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{median\_email =} \FunctionTok{median}\NormalTok{(email, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{min\_email =} \FunctionTok{min}\NormalTok{(email, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{max\_email =} \FunctionTok{max}\NormalTok{(email, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   n_valid mean_email median_email min_email max_email
+##     <int>      <dbl>        <dbl>     <dbl>     <dbl>
+## 1    1649       417.          120         0      6000
+\end{verbatim}
+
+\textbf{Explanation:} The \texttt{email} variable is created by
+converting hours to minutes (multiplying by 60) and adding the minutes,
+resulting in total minutes spent on email per week.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Visualize the distribution of this new variable. Find the mean and the
+  median number of minutes respondents spend on email weekly. Is the
+  mean or the median a better measure of the typical among of time
+  Americans spend on email weekly? Why?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualize the distribution}
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(email)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ email)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \DecValTok{60}\NormalTok{, }\AttributeTok{fill =} \StringTok{"steelblue"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Distribution of Weekly Email Time"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Minutes per Week"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Count"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.8\linewidth]{hw-08-exploring-gss_files/figure-latex/exercise-4-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate summary statistics}
+\NormalTok{email\_stats }\OtherTok{\textless{}{-}}\NormalTok{ gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(email)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_email =} \FunctionTok{mean}\NormalTok{(email),}
+    \AttributeTok{median\_email =} \FunctionTok{median}\NormalTok{(email),}
+    \AttributeTok{sd\_email =} \FunctionTok{sd}\NormalTok{(email),}
+    \AttributeTok{q1 =} \FunctionTok{quantile}\NormalTok{(email, }\FloatTok{0.25}\NormalTok{),}
+    \AttributeTok{q3 =} \FunctionTok{quantile}\NormalTok{(email, }\FloatTok{0.75}\NormalTok{)}
+\NormalTok{  )}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Email time summary:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Email time summary:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(email\_stats)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   mean_email median_email sd_email    q1    q3
+##        <dbl>        <dbl>    <dbl> <dbl> <dbl>
+## 1       417.          120     680.    50   480
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Store values for interpretation}
+\NormalTok{mean\_val }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(email\_stats}\SpecialCharTok{$}\NormalTok{mean\_email, }\DecValTok{1}\NormalTok{)}
+\NormalTok{median\_val }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(email\_stats}\SpecialCharTok{$}\NormalTok{median\_email, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Answer:} The mean is approximately 416.8 minutes per week, while
+the median is approximately 120 minutes per week.
+
+\textbf{Which measure is better and why?} The median is likely a better
+measure of the typical amount of time Americans spend on email weekly.
+Email time data is typically right-skewed (some people spend many hours
+on email, pulling the mean upward), so the median better represents the
+typical respondent's experience. The median is more robust to extreme
+values (outliers) and provides a more representative picture of the
+``typical'' employee.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Create another new variable, \texttt{snap\_insta} that is coded as
+  ``Yes'' if the respondent reported using any of Snapchat
+  (\texttt{snapchat}) or Instagram (\texttt{instagrm}), and ``No'' if
+  not. If the recorded value was \texttt{NA} for both of these
+  questions, the value in your new variable should also be \texttt{NA}.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create snap\_insta variable}
+\NormalTok{gss16 }\OtherTok{\textless{}{-}}\NormalTok{ gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{snap\_insta =} \FunctionTok{case\_when}\NormalTok{(}
+    \FunctionTok{is.na}\NormalTok{(snapchat) }\SpecialCharTok{\&} \FunctionTok{is.na}\NormalTok{(instagrm) }\SpecialCharTok{\textasciitilde{}} \ConstantTok{NA\_character\_}\NormalTok{,}
+\NormalTok{    snapchat }\SpecialCharTok{==} \StringTok{"Yes"} \SpecialCharTok{|}\NormalTok{ instagrm }\SpecialCharTok{==} \StringTok{"Yes"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Yes"}\NormalTok{,}
+    \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"No"}
+\NormalTok{  ))}
+
+\CommentTok{\# Verify the new variable}
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(snapchat, instagrm, snap\_insta) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(snapchat) }\SpecialCharTok{\&} \FunctionTok{is.na}\NormalTok{(instagrm))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 15 x 3
+##    snapchat instagrm snap_insta
+##    <chr>    <chr>    <chr>     
+##  1 No       No       No        
+##  2 No       No       No        
+##  3 Yes      Yes      Yes       
+##  4 No       Yes      Yes       
+##  5 Yes      Yes      Yes       
+##  6 No       No       No        
+##  7 No       No       No        
+##  8 No       No       No        
+##  9 No       No       No        
+## 10 No       No       No        
+## 11 Yes      No       Yes       
+## 12 No       No       No        
+## 13 No       Yes      Yes       
+## 14 Yes      Yes      Yes       
+## 15 No       Yes      Yes
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"snap\_insta distribution:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## snap_insta distribution:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(snap\_insta)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   snap_insta     n
+##   <chr>      <int>
+## 1 No           858
+## 2 Yes          514
+## 3 <NA>        1495
+\end{verbatim}
+
+\textbf{Explanation:} The \texttt{snap\_insta} variable combines
+information from both Snapchat and Instagram use. If either is ``Yes'',
+the new variable is ``Yes''. If both are ``No'', it's ``No''. If both
+are missing, it's also missing.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Calculate the percentage of Yes's for \texttt{snap\_insta} among those
+  who answered the question, i.e.~excluding \texttt{NA}s.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate percentage of Yes responses}
+\NormalTok{snap\_insta\_pct }\OtherTok{\textless{}{-}}\NormalTok{ gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(snap\_insta)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_total =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_yes =} \FunctionTok{sum}\NormalTok{(snap\_insta }\SpecialCharTok{==} \StringTok{"Yes"}\NormalTok{),}
+    \AttributeTok{pct\_yes =}\NormalTok{ (n\_yes }\SpecialCharTok{/}\NormalTok{ n\_total) }\SpecialCharTok{*} \DecValTok{100}
+\NormalTok{  )}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Snapchat/Instagram usage among respondents:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Snapchat/Instagram usage among respondents:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(snap\_insta\_pct)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 3
+##   n_total n_yes pct_yes
+##     <int> <int>   <dbl>
+## 1    1372   514    37.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}
+  \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Answer: Among respondents who answered the question,"}\NormalTok{,}
+  \FunctionTok{round}\NormalTok{(snap\_insta\_pct}\SpecialCharTok{$}\NormalTok{pct\_yes, }\DecValTok{1}\NormalTok{), }\StringTok{"\% use Snapchat or Instagram.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Answer: Among respondents who answered the question, 37.5 % use Snapchat or Instagram.
+\end{verbatim}
+
+\textbf{Interpretation:} This percentage indicates the adoption rate of
+these social media platforms among GSS respondents in 2016.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  What are the possible responses to the question \emph{Last week were
+  you working full time, part time, going to school, keeping house, or
+  what?} and how many respondents chose each of these answers? Note that
+  this information is stored in the \texttt{wrkstat} variable.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Examine work status variable}
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(wrkstat) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 2
+##   wrkstat              n
+##   <chr>            <int>
+## 1 Working fulltime  1321
+## 2 Retired            574
+## 3 Working parttime   345
+## 4 Keeping house      284
+## 5 Unempl, laid off   118
+## 6 Other               89
+## 7 School              76
+## 8 Temp not working    57
+## 9 <NA>                 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Work status categories and frequencies:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Work status categories and frequencies:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(wrkstat) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 2
+##   wrkstat              n
+##   <chr>            <int>
+## 1 Keeping house      284
+## 2 Other               89
+## 3 Retired            574
+## 4 School              76
+## 5 Temp not working    57
+## 6 Unempl, laid off   118
+## 7 Working fulltime  1321
+## 8 Working parttime   345
+## 9 <NA>                 3
+\end{verbatim}
+
+\textbf{Answer:} The possible responses to the work status question
+include categories such as ``Full-time'', ``Part-time'', ``Temporarily
+not working'', ``Unemployed - laid off'', ``Retired'', ``In school'',
+``Keeping house'', and possibly others. The counts show how many
+respondents fall into each category.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Fit a model predicting \texttt{email} (number of minutes per week
+  spent on email) from \texttt{educ} (number of years of education),
+  \texttt{wrkstat}, and \texttt{snap\_insta}. Interpret the slopes for
+  each of these variables.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fit linear regression model}
+\NormalTok{email\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(email }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educ }\SpecialCharTok{+}\NormalTok{ wrkstat }\SpecialCharTok{+}\NormalTok{ snap\_insta, }\AttributeTok{data =}\NormalTok{ gss16)}
+
+\CommentTok{\# View model summary}
+\FunctionTok{summary}\NormalTok{(email\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = email ~ educ + wrkstat + snap_insta, data = gss16)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -760.5 -372.7 -161.2   95.4 3355.6 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)             -229.736    149.837  -1.533  0.12569    
+## educ                      29.632      9.601   3.087  0.00211 ** 
+## wrkstatOther              33.057    209.470   0.158  0.87465    
+## wrkstatRetired            68.279    111.051   0.615  0.53887    
+## wrkstatSchool           -123.812    143.981  -0.860  0.39014    
+## wrkstatTemp not working  -73.709    153.948  -0.479  0.63225    
+## wrkstatUnempl, laid off  118.349    151.242   0.783  0.43419    
+## wrkstatWorking fulltime  366.840     87.690   4.183 3.26e-05 ***
+## wrkstatWorking parttime   18.900    101.632   0.186  0.85253    
+## snap_instaYes            149.961     52.745   2.843  0.00460 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 642.2 on 669 degrees of freedom
+##   (2188 observations deleted due to missingness)
+## Multiple R-squared:  0.1043, Adjusted R-squared:  0.09227 
+## F-statistic: 8.657 on 9 and 669 DF,  p-value: 2.395e-12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extract and interpret coefficients}
+\NormalTok{coef\_summary }\OtherTok{\textless{}{-}}\NormalTok{ broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{(email\_model)}
+\FunctionTok{print}\NormalTok{(coef\_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 5
+##    term                    estimate std.error statistic   p.value
+##    <chr>                      <dbl>     <dbl>     <dbl>     <dbl>
+##  1 (Intercept)               -230.     150.      -1.53  0.126    
+##  2 educ                        29.6      9.60     3.09  0.00211  
+##  3 wrkstatOther                33.1    209.       0.158 0.875    
+##  4 wrkstatRetired              68.3    111.       0.615 0.539    
+##  5 wrkstatSchool             -124.     144.      -0.860 0.390    
+##  6 wrkstatTemp not working    -73.7    154.      -0.479 0.632    
+##  7 wrkstatUnempl, laid off    118.     151.       0.783 0.434    
+##  8 wrkstatWorking fulltime    367.      87.7      4.18  0.0000326
+##  9 wrkstatWorking parttime     18.9    102.       0.186 0.853    
+## 10 snap_instaYes              150.      52.7      2.84  0.00460
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Model Interpretation:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Model Interpretation:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Intercept: The baseline email time when other variables are at reference levels.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Intercept: The baseline email time when other variables are at reference levels.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}
+  \StringTok{"Educ coefficient: For each additional year of education, email time changes by"}\NormalTok{,}
+  \FunctionTok{round}\NormalTok{(coef\_summary}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{2}\NormalTok{], }\DecValTok{2}\NormalTok{), }\StringTok{"minutes per week.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Educ coefficient: For each additional year of education, email time changes by 29.63 minutes per week.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Wrkstat coefficients: Each work status category differs from the reference category.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Wrkstat coefficients: Each work status category differs from the reference category.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}
+  \StringTok{"Snap\_insta coefficient: Using Snapchat/Instagram is associated with"}\NormalTok{,}
+  \FunctionTok{round}\NormalTok{(coef\_summary}\SpecialCharTok{$}\NormalTok{estimate[}\FunctionTok{grep}\NormalTok{(}\StringTok{"snap\_instYes"}\NormalTok{, coef\_summary}\SpecialCharTok{$}\NormalTok{term)], }\DecValTok{2}\NormalTok{),}
+  \StringTok{"minutes per week difference in email time.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Snap_insta coefficient: Using Snapchat/Instagram is associated with  minutes per week difference in email time.
+\end{verbatim}
+
+\textbf{Detailed Interpretation:} - \textbf{Education (educ):} Each
+additional year of education is associated with a change in email time.
+Higher education may correlate with jobs that require more email
+communication. - \textbf{Work Status (wrkstat):} Different employment
+statuses have different relationships with email usage. Full-time
+workers likely spend more time on email than part-time workers,
+students, or retirees. - \textbf{Snap\_insta:} Using Snapchat or
+Instagram may indicate younger respondents, who may have different email
+habits than older generations.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Create a predicted values vs.~residuals plot for this model. Are there
+  any issues with the model? If yes, describe them.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create predicted values and residuals}
+\NormalTok{email\_model\_aug }\OtherTok{\textless{}{-}}\NormalTok{ broom}\SpecialCharTok{::}\FunctionTok{augment}\NormalTok{(email\_model)}
+
+\CommentTok{\# Residuals vs fitted plot}
+\FunctionTok{ggplot}\NormalTok{(email\_model\_aug, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ .fitted, }\AttributeTok{y =}\NormalTok{ .resid)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Residuals vs Fitted Values"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Fitted Values"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Residuals"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.8\linewidth]{hw-08-exploring-gss_files/figure-latex/exercise-9-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Check for patterns}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Residual diagnostics:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Residual diagnostics:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Mean of residuals:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(email\_model\_aug}\SpecialCharTok{$}\NormalTok{.resid), }\DecValTok{6}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mean of residuals: 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"SD of residuals:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(email\_model\_aug}\SpecialCharTok{$}\NormalTok{.resid), }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## SD of residuals: 637.93
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Q{-}Q plot}
+\FunctionTok{ggplot}\NormalTok{(email\_model\_aug, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{sample =}\NormalTok{ .resid)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_qq}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{stat\_qq\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Normal Q{-}Q Plot"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.8\linewidth]{hw-08-exploring-gss_files/figure-latex/exercise-9-2}
+
+\textbf{Potential Issues with the Model:} 1.
+\textbf{Heteroscedasticity:} The spread of residuals may not be constant
+across fitted values (variance increases or decreases). 2.
+\textbf{Non-linearity:} The relationship between predictors and email
+time may not be linear. 3. \textbf{Outliers:} Some respondents may have
+unusually high or low email times, influencing the model. 4.
+\textbf{Normality:} Residuals may not be perfectly normally distributed,
+especially with skewed email time data. 5. \textbf{Missing data:} The
+analysis only includes respondents with complete data on all variables.
+
+Knit, \emph{commit, and push your changes to GitHub with an appropriate
+commit message. Make sure to commit and push all changed files so that
+your Git pane is cleared up afterwards.}
+
+\subsection{Part 3: Political views and science
+research}\label{part-3-political-views-and-science-research}
+
+The 2016 GSS also asked respondents whether they think of themselves as
+liberal or conservative (\texttt{polviews}) and whether they think
+science research is necessary and should be supported by the federal
+government (\texttt{advfront}).
+
+\begin{itemize}
+\tightlist
+\item
+  The question on science research is worded as follows:
+\end{itemize}
+
+\begin{quote}
+Even if it brings no immediate benefits, scientific research that
+advances the frontiers of knowledge is necessary and should be supported
+by the federal government.
+\end{quote}
+
+And possible responses to this question are Strongly agree, Agree,
+Disagree, Strongly disagree, Don't know, No answer, Not applicable.
+
+\begin{itemize}
+\tightlist
+\item
+  The question on political views is worded as follows:
+\end{itemize}
+
+\begin{quote}
+We hear a lot of talk these days about liberals and conservatives. I'm
+going to show you a seven-point scale on which the political views that
+people might hold are arranged from extremely liberal--point 1--to
+extremely conservative--point 7. Where would you place yourself on this
+scale?
+\end{quote}
+
+\textbf{Note:} The levels of this variables are spelled inconsistently:
+``Extremely liberal'' vs.~``Extrmly conservative''. Since this is the
+spelling that shows up in the data, you need to make sure this is how
+you spell the levels in your code.
+
+And possible responses to this question are Extremely liberal, Liberal,
+Slightly liberal, Moderate, Slghtly conservative, Conservative, Extrmly
+conservative. Responses that were originally Don't know, No answer and
+Not applicable are already mapped to \texttt{NA}s upon data import.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  In a new variable, recode \texttt{advfront} such that Strongly Agree
+  and Agree are mapped to \texttt{"Yes"}, and Disagree and Strongly
+  disagree are mapped to \texttt{"No"}. The remaining levels can be left
+  as is. Don't overwrite the existing \texttt{advfront}, instead pick a
+  different, informative name for your new variable.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Recode advfront to a simpler binary variable}
+\NormalTok{gss16 }\OtherTok{\textless{}{-}}\NormalTok{ gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{science\_support =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    advfront }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Strongly agree"}\NormalTok{, }\StringTok{"Agree"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Yes"}\NormalTok{,}
+\NormalTok{    advfront }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Strongly disagree"}\NormalTok{, }\StringTok{"Disagree"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"No"}\NormalTok{,}
+    \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \FunctionTok{as.character}\NormalTok{(advfront)}
+\NormalTok{  ))}
+
+\CommentTok{\# Verify the recoding}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Original advfront values:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Original advfront values:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(advfront)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   advfront              n
+##   <chr>             <int>
+## 1 Agree               759
+## 2 Disagree            184
+## 3 Dont know            27
+## 4 Strongly agree      400
+## 5 Strongly disagree    15
+## 6 <NA>               1482
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Recoded science\_support values:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Recoded science_support values:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(science\_support)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   science_support     n
+##   <chr>           <int>
+## 1 Dont know          27
+## 2 No                199
+## 3 Yes              1159
+## 4 <NA>             1482
+\end{verbatim}
+
+\textbf{Explanation:} The new \texttt{science\_support} variable
+simplifies the five-level \texttt{advfront} variable into a
+three-category variable: ``Yes'' (for agreement), ``No'' (for
+disagreement), and other responses remain unchanged.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  In a new variable, recode \texttt{polviews} such that Extremely
+  liberal, Liberal, and Slightly liberal, are mapped to
+  \texttt{"Liberal"}, and Slghtly conservative, Conservative, and
+  Extrmly conservative disagree are mapped to \texttt{"Conservative"}.
+  The remaining levels can be left as is. Make sure that the levels are
+  in a reasonable order. Don't overwrite the existing \texttt{polviews},
+  instead pick a different, informative name for your new variable.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Recode polviews to a simpler three{-}category variable}
+\NormalTok{gss16 }\OtherTok{\textless{}{-}}\NormalTok{ gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{polviews\_grouped =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    polviews }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Extremely liberal"}\NormalTok{, }\StringTok{"Liberal"}\NormalTok{, }\StringTok{"Slightly liberal"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Liberal"}\NormalTok{,}
+\NormalTok{    polviews }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Slghtly conservative"}\NormalTok{, }\StringTok{"Conservative"}\NormalTok{, }\StringTok{"Extrmly conservative"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Conservative"}\NormalTok{,}
+    \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \FunctionTok{as.character}\NormalTok{(polviews)}
+\NormalTok{  )) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{polviews\_grouped =} \FunctionTok{factor}\NormalTok{(polviews\_grouped,}
+    \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Liberal"}\NormalTok{, }\StringTok{"Moderate"}\NormalTok{, }\StringTok{"Conservative"}\NormalTok{)}
+\NormalTok{  ))}
+
+\CommentTok{\# Verify the recoding}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Original polviews values:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Original polviews values:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(polviews)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8 x 2
+##   polviews                 n
+##   <chr>                <int>
+## 1 Conservative           426
+## 2 Extremely liberal      136
+## 3 Extrmly conservative   120
+## 4 Liberal                350
+## 5 Moderate              1032
+## 6 Slghtly conservative   382
+## 7 Slightly liberal       310
+## 8 <NA>                   111
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Recoded polviews\_grouped values:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Recoded polviews_grouped values:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(polviews\_grouped)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   polviews_grouped     n
+##   <fct>            <int>
+## 1 Liberal            796
+## 2 Moderate          1032
+## 3 Conservative       928
+## 4 <NA>               111
+\end{verbatim}
+
+\textbf{Explanation:} The new \texttt{polviews\_grouped} variable
+consolidates the seven-point political ideology scale into three
+categories: Liberal (combining the three liberal positions),
+Conservative (combining the three conservative positions), and Moderate
+(kept separate). The factor levels are ordered logically from left to
+right.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{11}
+\tightlist
+\item
+  Create a visualization that displays the relationship between these
+  two new variables and interpret it.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a cross{-}tabulation with percentages}
+\NormalTok{science\_politics\_table }\OtherTok{\textless{}{-}}\NormalTok{ gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(science\_support), }\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(polviews\_grouped)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(polviews\_grouped, science\_support) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{.groups =} \StringTok{"drop"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(polviews\_grouped) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{percent =}\NormalTok{ (count }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(count)) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(science\_politics\_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 4
+## # Groups:   polviews_grouped [3]
+##   polviews_grouped science_support count percent
+##   <fct>            <chr>           <int>   <dbl>
+## 1 Liberal          Dont know           2   0.532
+## 2 Liberal          No                 43  11.4  
+## 3 Liberal          Yes               331  88.0  
+## 4 Moderate         Dont know           5   0.990
+## 5 Moderate         No                 62  12.3  
+## 6 Moderate         Yes               438  86.7  
+## 7 Conservative     Dont know          16   3.56 
+## 8 Conservative     No                 84  18.7  
+## 9 Conservative     Yes               349  77.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a visualization}
+\FunctionTok{ggplot}\NormalTok{(science\_politics\_table, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ polviews\_grouped, }\AttributeTok{y =}\NormalTok{ percent, }\AttributeTok{fill =}\NormalTok{ science\_support)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Support for Federal Science Research by Political Views"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Political Views"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Percentage (\%)"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Federal Science}\SpecialCharTok{\textbackslash{}n}\StringTok{Support"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.8\linewidth]{hw-08-exploring-gss_files/figure-latex/exercise-12-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Alternative: stacked bar chart}
+\FunctionTok{ggplot}\NormalTok{(science\_politics\_table, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ polviews\_grouped, }\AttributeTok{y =}\NormalTok{ percent, }\AttributeTok{fill =}\NormalTok{ science\_support)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{position =} \StringTok{"stack"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Support for Federal Science Research by Political Views"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Political Views"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Percentage (\%)"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Federal Science}\SpecialCharTok{\textbackslash{}n}\StringTok{Support"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.8\linewidth]{hw-08-exploring-gss_files/figure-latex/exercise-12-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate proportions by political view}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Support for federal science research by political views:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Support for federal science research by political views:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gss16 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(science\_support), }\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(polviews\_grouped), science\_support }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Yes"}\NormalTok{, }\StringTok{"No"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(polviews\_grouped) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{total =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_yes =} \FunctionTok{sum}\NormalTok{(science\_support }\SpecialCharTok{==} \StringTok{"Yes"}\NormalTok{),}
+    \AttributeTok{pct\_yes =}\NormalTok{ (n\_yes }\SpecialCharTok{/}\NormalTok{ total) }\SpecialCharTok{*} \DecValTok{100}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 4
+##   polviews_grouped total n_yes pct_yes
+##   <fct>            <int> <int>   <dbl>
+## 1 Liberal            374   331    88.5
+## 2 Moderate           500   438    87.6
+## 3 Conservative       433   349    80.6
+\end{verbatim}
+
+\textbf{Interpretation:} The visualization reveals the relationship
+between political ideology and support for federal funding of scientific
+research. Key patterns typically include:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Liberal respondents} tend to show higher support for federal
+  science research, reflecting the liberal emphasis on scientific
+  progress and government investment in public goods.
+\item
+  \textbf{Conservative respondents} show more varied opinions, with
+  perhaps lower overall support, potentially reflecting concerns about
+  government spending and efficiency.
+\item
+  \textbf{Moderate respondents} typically fall between the two extremes
+  in their support levels.
+\end{enumerate}
+
+This relationship illustrates how political ideology and views on
+science policy are interconnected in American public opinion. Liberal
+political orientation is generally associated with stronger support for
+government-funded scientific research, while conservative political
+orientation tends to be more skeptical of such spending.
+
+Knit, \emph{commit, and push your changes to GitHub with an appropriate
+commit message. Make sure to commit and push all changed files so that
+your Git pane is cleared up afterwards and review the md document on
+GitHub to make sure you're happy with the final state of your work.}
+
+\end{document}
