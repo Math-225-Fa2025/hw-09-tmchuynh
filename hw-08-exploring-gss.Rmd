@@ -153,6 +153,42 @@ gss16 %>%
     Is the mean or the median a better measure of the typical among of time Americans spend on email weekly?
     Why?
 
+```{r exercise-4, eval=TRUE}
+# Visualize the distribution
+gss16 %>%
+  filter(!is.na(email)) %>%
+  ggplot(aes(x = email)) +
+  geom_histogram(binwidth = 60, fill = "steelblue", alpha = 0.7) +
+  labs(
+    title = "Distribution of Weekly Email Time",
+    x = "Minutes per Week",
+    y = "Count"
+  ) +
+  theme_minimal()
+
+# Calculate summary statistics
+email_stats <- gss16 %>%
+  filter(!is.na(email)) %>%
+  summarise(
+    mean_email = mean(email),
+    median_email = median(email),
+    sd_email = sd(email),
+    q1 = quantile(email, 0.25),
+    q3 = quantile(email, 0.75)
+  )
+
+cat("Email time summary:\n")
+print(email_stats)
+
+# Store values for interpretation
+mean_val <- round(email_stats$mean_email, 1)
+median_val <- round(email_stats$median_email, 1)
+```
+
+**Answer:** The mean is approximately `r mean_val` minutes per week, while the median is approximately `r median_val` minutes per week. 
+
+**Which measure is better and why?** The median is likely a better measure of the typical amount of time Americans spend on email weekly. Email time data is typically right-skewed (some people spend many hours on email, pulling the mean upward), so the median better represents the typical respondent's experience. The median is more robust to extreme values (outliers) and provides a more representative picture of the "typical" employee.
+
 5.  Create another new variable, `snap_insta` that is coded as "Yes" if the respondent reported using any of Snapchat (`snapchat`) or Instagram (`instagrm`), and "No" if not.
     If the recorded value was `NA` for both of these questions, the value in your new variable should also be `NA`.
 
