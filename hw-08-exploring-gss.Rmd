@@ -216,6 +216,26 @@ gss16 %>%
 
 6.  Calculate the percentage of Yes's for `snap_insta` among those who answered the question, i.e. excluding `NA`s.
 
+```{r exercise-6, eval=TRUE}
+# Calculate percentage of Yes responses
+snap_insta_pct <- gss16 %>%
+  filter(!is.na(snap_insta)) %>%
+  summarise(
+    n_total = n(),
+    n_yes = sum(snap_insta == "Yes"),
+    pct_yes = (n_yes / n_total) * 100
+  )
+
+cat("Snapchat/Instagram usage among respondents:\n")
+print(snap_insta_pct)
+cat(
+  "\nAnswer: Among respondents who answered the question,",
+  round(snap_insta_pct$pct_yes, 1), "% use Snapchat or Instagram.\n"
+)
+```
+
+**Interpretation:** This percentage indicates the adoption rate of these social media platforms among GSS respondents in 2016.
+
 7.  What are the possible responses to the question *Last week were you working full time, part time, going to school, keeping house, or what?* and how many respondents chose each of these answers?
     Note that this information is stored in the `wrkstat` variable.
 
