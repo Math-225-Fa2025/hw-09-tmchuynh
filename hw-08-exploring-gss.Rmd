@@ -90,6 +90,30 @@ gss16 %>%
 2.  What percent of the respondents for whom this question is applicable\
     (i.e. excluding `NA`s and `Does not apply`s) have been harassed by their superiors or co-workers at their job.
 
+```{r exercise-2}
+# Filter to applicable responses only (exclude NA and "Does not apply")
+harassment_applicable <- gss16 %>%
+  filter(!is.na(harass5), harass5 != "Does not apply")
+
+# Calculate the percentage of "Yes" responses
+harassment_pct <- harassment_applicable %>%
+  summarise(
+    n_total = n(),
+    n_yes = sum(harass5 == "Yes"),
+    pct_harassed = (n_yes / n_total) * 100
+  )
+
+harassment_pct %>%
+  print()
+
+cat(
+  "\nAnswer: Among respondents for whom this question is applicable,",
+  round(harassment_pct$pct_harassed, 1), "% have been harassed at work.\n"
+)
+```
+
+**Interpretation:** This percentage represents the proportion of employed respondents who have experienced workplace harassment in the past five years, providing a measure of the prevalence of bullying and abuse in the US workplace according to the 2016 GSS.
+
 Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
 ## Part 2: Time spent on email
