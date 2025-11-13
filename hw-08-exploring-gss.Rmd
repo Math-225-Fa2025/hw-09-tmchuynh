@@ -56,6 +56,7 @@ You can load them by running the following in your Console:
 ```{r load-packages, message = FALSE, eval = TRUE}
 library(tidyverse)
 library(dsbox)
+library(broom)
 ```
 
 ## Data
@@ -78,7 +79,7 @@ Answers to this question are stored in the `harass5` variable in our dataset.
 
 1.  What are the possible responses to this question and how many respondents chose each of these answers?
 
-```{r exercise-1}
+```{r exercise-1, eval=TRUE}
 # Examine the possible responses to the harassment question
 gss16 %>%
   count(harass5) %>%
@@ -90,7 +91,7 @@ gss16 %>%
 2.  What percent of the respondents for whom this question is applicable\
     (i.e. excluding `NA`s and `Does not apply`s) have been harassed by their superiors or co-workers at their job.
 
-```{r exercise-2}
+```{r exercise-2, eval=TRUE}
 # Filter to applicable responses only (exclude NA and "Does not apply")
 harassment_applicable <- gss16 %>%
   filter(!is.na(harass5), harass5 != "Does not apply")
@@ -124,7 +125,7 @@ For example, if the response is 2.5 hrs, this would be recorded as `emailhr = 2`
 
 3.  Create a new variable called `email` that combines these two variables to reports the number of minutes the respondents spend on email weekly.
 
-```{r exercise-3}
+```{r exercise-3, eval=TRUE}
 # Create email variable combining hours and minutes
 gss16 <- gss16 %>%
   mutate(email = emailhr * 60 + emailmin)
