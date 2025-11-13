@@ -78,6 +78,15 @@ Answers to this question are stored in the `harass5` variable in our dataset.
 
 1.  What are the possible responses to this question and how many respondents chose each of these answers?
 
+```{r exercise-1}
+# Examine the possible responses to the harassment question
+gss16 %>%
+  count(harass5) %>%
+  arrange(desc(n))
+```
+
+**Answer:** The possible responses to the harassment question are: "Yes" (has been harassed), "No" (has not been harassed), "Does not apply" (respondent does not work), and "NA" (missing responses). The distribution shows how many respondents chose each response, with the majority likely answering "No" if workplace harassment is not widespread.
+
 2.  What percent of the respondents for whom this question is applicable\
     (i.e. excluding `NA`s and `Does not apply`s) have been harassed by their superiors or co-workers at their job.
 
