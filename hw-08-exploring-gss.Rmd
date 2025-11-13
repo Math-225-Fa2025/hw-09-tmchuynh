@@ -192,6 +192,28 @@ median_val <- round(email_stats$median_email, 1)
 5.  Create another new variable, `snap_insta` that is coded as "Yes" if the respondent reported using any of Snapchat (`snapchat`) or Instagram (`instagrm`), and "No" if not.
     If the recorded value was `NA` for both of these questions, the value in your new variable should also be `NA`.
 
+```{r exercise-5, eval=TRUE}
+# Create snap_insta variable
+gss16 <- gss16 %>%
+  mutate(snap_insta = case_when(
+    is.na(snapchat) & is.na(instagrm) ~ NA_character_,
+    snapchat == "Yes" | instagrm == "Yes" ~ "Yes",
+    TRUE ~ "No"
+  ))
+
+# Verify the new variable
+gss16 %>%
+  select(snapchat, instagrm, snap_insta) %>%
+  filter(!(is.na(snapchat) & is.na(instagrm))) %>%
+  head(15)
+
+cat("snap_insta distribution:\n")
+gss16 %>%
+  count(snap_insta)
+```
+
+**Explanation:** The `snap_insta` variable combines information from both Snapchat and Instagram use. If either is "Yes", the new variable is "Yes". If both are "No", it's "No". If both are missing, it's also missing.
+
 6.  Calculate the percentage of Yes's for `snap_insta` among those who answered the question, i.e. excluding `NA`s.
 
 7.  What are the possible responses to the question *Last week were you working full time, part time, going to school, keeping house, or what?* and how many respondents chose each of these answers?
