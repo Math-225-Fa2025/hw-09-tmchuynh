@@ -378,6 +378,29 @@ gss16 %>%
     Make sure that the levels are in a reasonable order.
     Don't overwrite the existing `polviews`, instead pick a different, informative name for your new variable.
 
+```{r exercise-11, eval=TRUE}
+# Recode polviews to a simpler three-category variable
+gss16 <- gss16 %>%
+  mutate(polviews_grouped = case_when(
+    polviews %in% c("Extremely liberal", "Liberal", "Slightly liberal") ~ "Liberal",
+    polviews %in% c("Slghtly conservative", "Conservative", "Extrmly conservative") ~ "Conservative",
+    TRUE ~ as.character(polviews)
+  )) %>%
+  mutate(polviews_grouped = factor(polviews_grouped,
+    levels = c("Liberal", "Moderate", "Conservative")
+  ))
+
+# Verify the recoding
+cat("Original polviews values:\n")
+gss16 %>%
+  count(polviews)
+
+cat("\nRecoded polviews_grouped values:\n")
+gss16 %>%
+  count(polviews_grouped)
+```
+
+**Explanation:** The new `polviews_grouped` variable consolidates the seven-point political ideology scale into three categories: Liberal (combining the three liberal positions), Conservative (combining the three conservative positions), and Moderate (kept separate). The factor levels are ordered logically from left to right.
 12. Create a visualization that displays the relationship between these two new variables and interpret it.
 
 Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
