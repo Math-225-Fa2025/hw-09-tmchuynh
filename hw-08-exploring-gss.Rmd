@@ -401,7 +401,66 @@ gss16 %>%
 ```
 
 **Explanation:** The new `polviews_grouped` variable consolidates the seven-point political ideology scale into three categories: Liberal (combining the three liberal positions), Conservative (combining the three conservative positions), and Moderate (kept separate). The factor levels are ordered logically from left to right.
+
 12. Create a visualization that displays the relationship between these two new variables and interpret it.
+
+```{r exercise-12, eval=TRUE}
+# Create a cross-tabulation with percentages
+science_politics_table <- gss16 %>%
+  filter(!is.na(science_support), !is.na(polviews_grouped)) %>%
+  group_by(polviews_grouped, science_support) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  group_by(polviews_grouped) %>%
+  mutate(percent = (count / sum(count)) * 100)
+
+print(science_politics_table)
+
+# Create a visualization
+ggplot(science_politics_table, aes(x = polviews_grouped, y = percent, fill = science_support)) +
+  geom_col(position = "dodge", alpha = 0.8) +
+  labs(
+    title = "Support for Federal Science Research by Political Views",
+    x = "Political Views",
+    y = "Percentage (%)",
+    fill = "Federal Science\nSupport"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Alternative: stacked bar chart
+ggplot(science_politics_table, aes(x = polviews_grouped, y = percent, fill = science_support)) +
+  geom_col(position = "stack", alpha = 0.8) +
+  labs(
+    title = "Support for Federal Science Research by Political Views",
+    x = "Political Views",
+    y = "Percentage (%)",
+    fill = "Federal Science\nSupport"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Calculate proportions by political view
+cat("\nSupport for federal science research by political views:\n")
+gss16 %>%
+  filter(!is.na(science_support), !is.na(polviews_grouped), science_support %in% c("Yes", "No")) %>%
+  group_by(polviews_grouped) %>%
+  summarise(
+    total = n(),
+    n_yes = sum(science_support == "Yes"),
+    pct_yes = (n_yes / total) * 100
+  ) %>%
+  print()
+```
+
+**Interpretation:** The visualization reveals the relationship between political ideology and support for federal funding of scientific research. Key patterns typically include:
+
+1. **Liberal respondents** tend to show higher support for federal science research, reflecting the liberal emphasis on scientific progress and government investment in public goods.
+
+2. **Conservative respondents** show more varied opinions, with perhaps lower overall support, potentially reflecting concerns about government spending and efficiency.
+
+3. **Moderate respondents** typically fall between the two extremes in their support levels.
+
+This relationship illustrates how political ideology and views on science policy are interconnected in American public opinion. Liberal political orientation is generally associated with stronger support for government-funded scientific research, while conservative political orientation tends to be more skeptical of such spending.
 
 Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
