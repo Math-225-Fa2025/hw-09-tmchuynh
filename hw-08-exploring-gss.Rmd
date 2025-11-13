@@ -290,6 +290,41 @@ cat(
     Are there any issues with the model?
     If yes, describe them.
 
+```{r exercise-9, eval=TRUE}
+# Create predicted values and residuals
+email_model_aug <- broom::augment(email_model)
+
+# Residuals vs fitted plot
+ggplot(email_model_aug, aes(x = .fitted, y = .resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(
+    title = "Residuals vs Fitted Values",
+    x = "Fitted Values",
+    y = "Residuals"
+  ) +
+  theme_minimal()
+
+# Check for patterns
+cat("Residual diagnostics:\n")
+cat("Mean of residuals:", round(mean(email_model_aug$.resid), 6), "\n")
+cat("SD of residuals:", round(sd(email_model_aug$.resid), 2), "\n")
+
+# Q-Q plot
+ggplot(email_model_aug, aes(sample = .resid)) +
+  stat_qq() +
+  stat_qq_line() +
+  labs(title = "Normal Q-Q Plot") +
+  theme_minimal()
+```
+
+**Potential Issues with the Model:**
+1. **Heteroscedasticity:** The spread of residuals may not be constant across fitted values (variance increases or decreases).
+2. **Non-linearity:** The relationship between predictors and email time may not be linear.
+3. **Outliers:** Some respondents may have unusually high or low email times, influencing the model.
+4. **Normality:** Residuals may not be perfectly normally distributed, especially with skewed email time data.
+5. **Missing data:** The analysis only includes respondents with complete data on all variables.
+
 Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
 ## Part 3: Political views and science research
