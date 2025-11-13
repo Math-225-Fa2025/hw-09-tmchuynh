@@ -124,6 +124,30 @@ For example, if the response is 2.5 hrs, this would be recorded as `emailhr = 2`
 
 3.  Create a new variable called `email` that combines these two variables to reports the number of minutes the respondents spend on email weekly.
 
+```{r exercise-3}
+# Create email variable combining hours and minutes
+gss16 <- gss16 %>%
+  mutate(email = emailhr * 60 + emailmin)
+
+# Check the new variable
+gss16 %>%
+  select(emailhr, emailmin, email) %>%
+  head(10)
+
+cat("Email time statistics:\n")
+gss16 %>%
+  summarise(
+    n_valid = sum(!is.na(email)),
+    mean_email = mean(email, na.rm = TRUE),
+    median_email = median(email, na.rm = TRUE),
+    min_email = min(email, na.rm = TRUE),
+    max_email = max(email, na.rm = TRUE)
+  ) %>%
+  print()
+```
+
+**Explanation:** The `email` variable is created by converting hours to minutes (multiplying by 60) and adding the minutes, resulting in total minutes spent on email per week.
+
 4.  Visualize the distribution of this new variable.
     Find the mean and the median number of minutes respondents spend on email weekly.
     Is the mean or the median a better measure of the typical among of time Americans spend on email weekly?
